@@ -1,60 +1,68 @@
 <!DOCTYPE html>
 <html>
- <title>Vacation Trip</title>
-<body>
+  <title>Vacation Trip</title>
+  <body>
+    <h2 class="red-text" style="color: red">Saikumar goes on a cruise</h2>
+    <form>
+      <input type="checkbox" id="cb1" name="cb1" value="true" />
+      <label for="cb1">Shares Cabin</label><br />
+      <input type="checkbox" id="cb2" name="cb2" value="true" />
+      <label for="cb2">Breakfast</label><br />
+      <input type="checkbox" id="cb3" name="cb3" value="false" />
+      <label for="cb3">Pool Pass</label><br />
+      <input type="button" onclick="selectCruise()" value="Select a cruise" />
+    </form>
+    <p id="result3">Results are displaying here...</p>
 
-<h2 class="red-text" style="color:red;"">Saikumar goes on a cruise</h2>
-<form>
-    <input type="checkbox" id="cb1" name="cb1" value="true">
-    <label for="cb1">Shares Cabin</label><br>
-    <input type="checkbox" id="cb2" name="cb2" value="true">
-    <label for="cb2">Breakfast</label><br>
-    <input type="checkbox" id="cb3" name="cb3" value="false">
-    <label for="cb3">Pool Pass</label><br>
-    <input type="button" onclick="selectCruise()" value="Select a cruise">
-</form>
-<p id="result3">Results are displaying here...</p>
+    <form>
+      <lable for="property">Enter the number of days</lable>
+      <input type="text" id="property" name="property" value="days" /><br />
+      <label for="price">Enter price</label>
+      <input type="text" id="price" name="price" /><br />
+      <input
+        type="button"
+        onclick="Updatethecruise()"
+        value="Update the cruise"
+      />
+    </form>
+    <p id="UpdateResults">Result</p>
 
+    <script>
+      var my_cruise = {};
+      out1 = document.getElementById("result3");
 
-
-<script> 
-
-var my_cruise={}
-out=document.getElementById("result3")
-
-function selectCruise (){
-  
-    
-        my_cruise={}
-        if(document.getElementById("cb1").checked==true)
-        {
-            my_cruise["shared"]=true
+      function selectCruise() {
+        my_cruise = {};
+        if (document.getElementById("cb1").checked == true) {
+          my_cruise["shared"] = true;
+        } else {
+          my_cruise["shared"] = false;
         }
-        else{
-            my_cruise["shared"]=false
+        if (document.getElementById("cb2").checked == true) {
+          my_cruise["breakfast"] = true;
+        } else {
+          my_cruise["breakfast"] = false;
         }
-        if(document.getElementById("cb2").checked==true){
-            my_cruise["breakfast"]=true
+        if (document.getElementById("cb3").checked == true) {
+          my_cruise["pool"] = true;
+        } else {
+          my_cruise["pool"] = false;
         }
-        else{
-            my_cruise["breakfast"]=false
-        }
-        if(document.getElementById("cb3").checked==true){
-            my_cruise["pool"]=true
-        }
-        else{
-            my_cruise["pool"]=false
-        }
-        out.innerHTML=JSON.stringify(my_cruise)
-    }
+        out1.innerHTML = JSON.stringify(my_cruise);
+        document.getElementById("cb1").checked = false;
+        document.getElementById("cb2").checked = false;
+        document.getElementById("cb3").checked = false;
+      }
 
-    
-</script>
-
-
-
-
-
-
-</body>
-</html> 
+      function Updatethecruise() {
+        my_cruise={};
+        property = document.getElementById("property").value;
+        price_input = document.getElementById("price").value;
+        out2 = document.getElementById("UpdateResults");
+        my_cruise["property"] = property;
+        my_cruise["price"] = price_input;
+        out2.innerHTML = JSON.stringify(my_cruise);
+      }
+    </script>
+  </body>
+</html>
